@@ -24,7 +24,8 @@ struct BeaconView: View {
                             Spacer()
                             Text("Minor: \(beacon.minor)")
                             Spacer()
-                            Text("Proximity: \(beacon.proximity.rawValue)")
+                            //Text("Proximity: \(beacon.proximity.rawValue)")
+                            Text(beacon.proximity.stringValue)
                         }
                     }
                 }
@@ -105,3 +106,21 @@ class BeaconDetector: NSObject, CLLocationManagerDelegate, ObservableObject {
 }
 
 extension CLBeacon: Identifiable {}
+
+extension CLProximity {
+    
+    var stringValue: String {
+        switch self {
+        case .unknown:
+            return "unknown"
+        case .immediate:
+            return "immediate"
+        case .near:
+            return "near"
+        case .far:
+            return "far"
+        @unknown default:
+            return "unknown"
+        }
+    }
+}
