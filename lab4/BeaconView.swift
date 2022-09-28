@@ -9,7 +9,7 @@ import SwiftUI
 import CoreLocation
 
 struct BeaconView: View {
-    var detector = BeaconDetector()
+        @ObservedObject var detector = BeaconDetector()
         @State private var isScanning: Bool = false
         
         var body: some View {
@@ -40,7 +40,7 @@ struct BeaconView_Previews: PreviewProvider {
     }
 }
 
-class BeaconDetector {
+class BeaconDetector: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     var locationManager = CLLocationManager()
     
@@ -48,7 +48,7 @@ class BeaconDetector {
     let uuid = UUID(uuidString: "12345678-1234-1234-1234-123456789ABC")
 
     var beaconRegion: CLBeaconRegion?
-    var status = "Inited____"
+    @Published var status = "Inited"
 
     init() {
         locationManager.requestWhenInUseAuthorization()
