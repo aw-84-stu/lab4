@@ -18,6 +18,15 @@ struct BeaconView: View {
                     Text(detector.status)
                 }
                 Section(header: Text("Ranging")) {
+                    ForEach(detector.rangedBeacons) { beacon in
+                        HStack{
+                            Text("Major: \(beacon.major)")
+                            Spacer()
+                            Text("Minor: \(beacon.minor)")
+                            Spacer()
+                            Text("Proximity: \(beacon.proximity.rawValue)")
+                        }
+                    }
                 }
                 Section(header: Text("Control")) {
                     Toggle("Scan", isOn: $isScanning)
@@ -50,10 +59,18 @@ class BeaconDetector: NSObject, CLLocationManagerDelegate, ObservableObject {
     var beaconRegion: CLBeaconRegion?
     @Published var status = "Inited"
 
-    init() {
-        locationManager.requestWhenInUseAuthorization()
+    var constraint: CLBeaconIdentityConstraint?
+    @Published var rangedBeacons: [CLBeacon] = []
+    
+    override init() {
+        super.init()
+            
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.delegate = self
+            
+            beaconRegion = CLBeaconRegion(uuid: uuid!, identifier: "M5StickC beacons");
         
-        beaconRegion = CLBeaconRegion(uuid: uuid!, identifier: "M5StickC beacons")
+        constraint = CLBeaconIdentityConstraint(uuid: uuid!)
     }
     
     func startScanning() {
@@ -65,4 +82,26 @@ class BeaconDetector: NSObject, CLLocationManagerDelegate, ObservableObject {
         locationManager.stopMonitoring(for: beaconRegion!)
         status = "Scanning stopped"
     }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        status = "Entered \(region.identifier) region."
+        
+        locationManager.startRangingBeacons(satisfying: constraint!)
+    }
+
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        status = "Left \(region.identifier) region."
+        
+        
+        locationManager.stopRangingBeacons(satisfying: constraint!)
+        rangedBeacons = []
+    }
+
+    func locationManager(_ manager: CLLocationManager, didRange beacons: [CLBeacon], satisfying beaconConstraint: CLBeaconIdentityConstraint) {
+        
+        rangedBeacons = beacons
+    }
+    
 }
+
+extension CLBeacon: Identifiable {}
