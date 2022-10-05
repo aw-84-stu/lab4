@@ -13,10 +13,6 @@ struct BleView: View {
        
         var body: some View {
             List {
-                Section(header: Text("Scan and Connect")) {
-                    Text(client.status)
-                    Button("Scan and connect", action: client.startScanning )
-                }
                 Section(header: Text("Heart Rate Measurement")) {
                     Text("\(client.heartRateMeasurement) bpm")
                     Button("Register heart rate measurement", action:  client.registerHeartRateMeasurement )
@@ -28,6 +24,10 @@ struct BleView: View {
                 Section(header: Text("Heart Rate Control Point")) {
                     Button("Write 0xC9", action: { client.writeHeartRateControlPoint(Data([0xC9])) } )
                     Button("Write 0xBEEF", action: { client.writeHeartRateControlPoint(Data([0xBE, 0xEF])) } )
+                }
+                Section(header: Text("Scan and Connect")) {
+                    Text(client.status)
+                    Button("Scan and connect", action: client.startScanning )
                 }
             }
         }
