@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7119CA3428ED1CB200522684 /* BleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7119CA3328ED1CB200522684 /* BleView.swift */; };
 		71EC525F28E3E6970099F0C8 /* lab4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EC525E28E3E6970099F0C8 /* lab4App.swift */; };
 		71EC526128E3E6970099F0C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EC526028E3E6970099F0C8 /* ContentView.swift */; };
 		71EC526328E3E6980099F0C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71EC526228E3E6980099F0C8 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7119CA3328ED1CB200522684 /* BleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleView.swift; sourceTree = "<group>"; };
 		71EC525B28E3E6970099F0C8 /* lab4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lab4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71EC525E28E3E6970099F0C8 /* lab4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lab4App.swift; sourceTree = "<group>"; };
 		71EC526028E3E6970099F0C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				71EC526228E3E6980099F0C8 /* Assets.xcassets */,
 				71EC526428E3E6980099F0C8 /* Preview Content */,
 				71EC528828E3E6CB0099F0C8 /* BeaconView.swift */,
+				7119CA3328ED1CB200522684 /* BleView.swift */,
 			);
 			path = lab4;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			files = (
 				71EC528928E3E6CB0099F0C8 /* BeaconView.swift in Sources */,
 				71EC526128E3E6970099F0C8 /* ContentView.swift in Sources */,
+				7119CA3428ED1CB200522684 /* BleView.swift in Sources */,
 				71EC525F28E3E6970099F0C8 /* lab4App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +428,7 @@
 				DEVELOPMENT_TEAM = WD34QV3N9C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "We need right to communicate with the heart rate monitor via bluetooth";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is needed to provide ar!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -454,6 +459,7 @@
 				DEVELOPMENT_TEAM = WD34QV3N9C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "We need right to communicate with the heart rate monitor via bluetooth";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is needed to provide ar!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
